@@ -22,4 +22,4 @@ Run the Spring Boot app (on **Windows**):
 
 # Features
 
-coming soon...
+- **H2 Database**
