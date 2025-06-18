@@ -25,3 +25,4 @@ Run the Spring Boot app (on **Windows**):
 - **H2 Database**
 - **`DAO` (Data Access Objects)**
 - **Service layer**
+- **Data Validation**
