@@ -23,3 +23,4 @@ Run the Spring Boot app (on **Windows**):
 # Features
 
 - **H2 Database**
+- **`DAO` (Data Access Objects)**
