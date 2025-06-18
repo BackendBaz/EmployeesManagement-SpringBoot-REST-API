@@ -1,7 +1,7 @@
 package io.github.backendbaz.employees.controller;
 
-import io.github.backendbaz.employees.dao.EmployeeDAO;
 import io.github.backendbaz.employees.entity.Employee;
+import io.github.backendbaz.employees.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,17 +15,17 @@ import java.util.List;
 @RequestMapping("/api/employees")
 public class EmployeeRestController {
 
-    private final EmployeeDAO employeeDAO;
+    private final EmployeeService employeeService;
 
     @Autowired
-    public EmployeeRestController(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
+    public EmployeeRestController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<Employee> findAll() {
-        return employeeDAO.findAll();
+        return employeeService.findAll();
     }
 
 }
