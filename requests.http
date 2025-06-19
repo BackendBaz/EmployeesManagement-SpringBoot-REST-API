@@ -3,4 +3,14 @@ GET http://localhost:8080/api/employees
 
 ### findEmployeeById:
 GET http://localhost:8080/api/employees/-3
+
+### addEmployee:
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "firstName": "Amirhossein",
+  "lastName": "Emadi",
+  "email": "amir@gmail.com"
+}
 ###

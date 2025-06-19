@@ -2,7 +2,9 @@ package io.github.backendbaz.employees.controller;
 
 import io.github.backendbaz.employees.entity.Employee;
 import io.github.backendbaz.employees.exception.EmployeeNotFoundException;
+import io.github.backendbaz.employees.request.EmployeeRequest;
 import io.github.backendbaz.employees.service.EmployeeService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,6 +41,12 @@ public class EmployeeRestController {
             throw new EmployeeNotFoundException("Employee with id " + id +
                     " not found");
         return employeeService.findById(id);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public Employee addEmployee(@Valid @RequestBody EmployeeRequest newEmployee) {
+        return employeeService.save(newEmployee);
     }
 
 }

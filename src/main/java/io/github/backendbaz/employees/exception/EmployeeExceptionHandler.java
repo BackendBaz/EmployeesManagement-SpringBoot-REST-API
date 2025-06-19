@@ -2,6 +2,8 @@ package io.github.backendbaz.employees.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
@@ -39,6 +41,28 @@ public class EmployeeExceptionHandler {
                 HttpStatus.BAD_REQUEST.value(),
                 "Bad Request",
                 "Type of argument is not valid",
+                System.currentTimeMillis()
+        );
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<EmployeeErrorResponse> emptyBodyNotReadable() {
+        EmployeeErrorResponse response = new EmployeeErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                "Bad Request",
+                "Required request body is missing",
+                System.currentTimeMillis()
+        );
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<EmployeeErrorResponse> bodyArgumentNotValid() {
+        EmployeeErrorResponse response = new EmployeeErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                "Bad Request",
+                "There is an invalid body",
                 System.currentTimeMillis()
         );
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
