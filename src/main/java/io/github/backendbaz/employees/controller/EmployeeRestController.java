@@ -49,4 +49,14 @@ public class EmployeeRestController {
         return employeeService.save(newEmployee);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    public Employee updateEmployeeById(
+            @PathVariable
+            @Min(value = 1, message = "Id must be a positive number")
+            long id,
+            @Valid @RequestBody EmployeeRequest editableEmployee) {
+        return employeeService.update(id, editableEmployee);
+    }
+
 }

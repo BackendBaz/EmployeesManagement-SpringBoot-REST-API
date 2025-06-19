@@ -2,7 +2,7 @@
 GET http://localhost:8080/api/employees
 
 ### findEmployeeById:
-GET http://localhost:8080/api/employees/-3
+GET http://localhost:8080/api/employees/3
 
 ### addEmployee:
 POST http://localhost:8080/api/employees
@@ -13,4 +13,13 @@ Content-Type: application/json
   "lastName": "Emadi",
   "email": "amir@gmail.com"
 }
-###
+
+### updateEmployeeById:
+PUT http://localhost:8080/api/employees/3
+Content-Type: application/json
+
+{
+  "firstName": "Zahra",
+  "lastName": "Abbasi",
+  "email": "zahra@gmail.com"
+}
