@@ -1,0 +1,6 @@
+### findAllEmployees:
+GET http://localhost:8080/api/employees
+
+### findEmployeeById:
+GET http://localhost:8080/api/employees/-3
+###
