@@ -26,3 +26,4 @@ Run the Spring Boot app (on **Windows**):
 - **`DAO` (Data Access Objects)**
 - **Service layer**
 - **Data Validation**
+- **Exceptions Handling**
