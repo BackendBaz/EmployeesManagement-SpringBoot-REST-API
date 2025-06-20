@@ -42,6 +42,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Transactional
     @Override
     public Employee update(long id, EmployeeRequest employeeRequest) {
+        if (findById(id) == null) return null;
         return employeeRepository.save(convertToEmployee(id, employeeRequest));
     }
 
@@ -58,6 +59,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Transactional
     @Override
     public void deleteById(long id) {
+        if (findById(id) == null) return;
         employeeRepository.deleteById(id);
     }
 
