@@ -27,3 +27,4 @@ Run the Spring Boot app (on **Windows**):
 - **Service layer**
 - **Data Validation**
 - **Exceptions Handling**
+- **JPA Repository**
