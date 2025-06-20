@@ -1,6 +1,7 @@
 package io.github.backendbaz.employees.dao;
 
 import io.github.backendbaz.employees.entity.Employee;
+import io.github.backendbaz.employees.exception.EmployeeNotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,23 @@ public class EmployeeDAOJpa implements EmployeeDAO {
 
     @Override
     public Employee findById(long id) {
-        return em.find(Employee.class, id);
+        Employee employee = em.find(Employee.class, id);
+        if (!em.contains(employee))
+            throw new EmployeeNotFoundException("Employee with id " + id +
+                    " not found");
+        return employee;
     }
 
     @Override
     public Employee save(Employee employee) {
+        return em.merge(employee);
+    }
+
+    @Override
+    public Employee update(long id, Employee employee) {
+        if (!em.contains(em.find(Employee.class, id)))
+            throw new EmployeeNotFoundException("Employee with id " + id +
+                    " not found");
         return em.merge(employee);
     }
 

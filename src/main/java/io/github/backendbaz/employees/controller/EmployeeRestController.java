@@ -1,7 +1,6 @@
 package io.github.backendbaz.employees.controller;
 
 import io.github.backendbaz.employees.entity.Employee;
-import io.github.backendbaz.employees.exception.EmployeeNotFoundException;
 import io.github.backendbaz.employees.request.EmployeeRequest;
 import io.github.backendbaz.employees.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -34,12 +33,7 @@ public class EmployeeRestController {
     @GetMapping("/{id}")
     public Employee findEmployeeById(
             @PathVariable
-            @Min(value = 1, message = "Id must be a positive number")
-            long id) {
-        Employee employee = employeeService.findById(id);
-        if (employee == null)
-            throw new EmployeeNotFoundException("Employee with id " + id +
-                    " not found");
+            @Min(value = 1, message = "Id must be a positive number") long id) {
         return employeeService.findById(id);
     }
 
@@ -57,6 +51,14 @@ public class EmployeeRestController {
             long id,
             @Valid @RequestBody EmployeeRequest editableEmployee) {
         return employeeService.update(id, editableEmployee);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void deleteEmployeeById(@PathVariable
+                                   @Min(value = 1, message = "Id must be a positive number")
+                                   long id) {
+        employeeService.deleteById(id);
     }
 
 }
